@@ -30,6 +30,3 @@ NUM_SAMPLES = 2000  # Number of samples for training
 MODEL_SAVE_PATH = os.path.join(os.getcwd(), "model.pth")
 LOG_DIR = os.path.join(os.getcwd(), "logs")
 os.makedirs(LOG_DIR, exist_ok=True)
-
-
-

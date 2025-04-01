@@ -33,16 +33,27 @@ def generate_synthetic_data(num_samples=1000, time_steps=20, anomaly_ratio=0.1):
     - labels: NumPy array of shape (num_samples, 1) where 1 indicates an anomaly
     """
     # Normal operating ranges
-    normal_cpu = np.random.normal(loc=50, scale=10, size=(num_samples, time_steps))  # CPU usage (50% avg, ±10%)
-    normal_memory = np.random.normal(loc=60, scale=5, size=(num_samples, time_steps))  # Memory usage (60% avg, ±5%)
-    normal_disk = np.random.normal(loc=40, scale=8, size=(num_samples, time_steps))  # Disk usage (40% avg, ±8%)
-    normal_network = np.random.normal(loc=100, scale=20,
-                                      size=(num_samples, time_steps))  # Network traffic (100 Mbps avg, ±20)
-    normal_temperature = np.random.normal(loc=70, scale=5,
-                                          size=(num_samples, time_steps))  # Temperature (70°C avg, ±5°C)
+    normal_cpu = np.random.normal(
+        loc=50, scale=10, size=(num_samples, time_steps)
+    )  # CPU usage (50% avg, ±10%)
+    normal_memory = np.random.normal(
+        loc=60, scale=5, size=(num_samples, time_steps)
+    )  # Memory usage (60% avg, ±5%)
+    normal_disk = np.random.normal(
+        loc=40, scale=8, size=(num_samples, time_steps)
+    )  # Disk usage (40% avg, ±8%)
+    normal_network = np.random.normal(
+        loc=100, scale=20, size=(num_samples, time_steps)
+    )  # Network traffic (100 Mbps avg, ±20)
+    normal_temperature = np.random.normal(
+        loc=70, scale=5, size=(num_samples, time_steps)
+    )  # Temperature (70°C avg, ±5°C)
 
     # Stack into a single dataset (num_samples, time_steps, 5 features)
-    data = np.stack([normal_cpu, normal_memory, normal_disk, normal_network, normal_temperature], axis=-1)
+    data = np.stack(
+        [normal_cpu, normal_memory, normal_disk, normal_network, normal_temperature],
+        axis=-1,
+    )
     labels = np.zeros((num_samples, 1))  # Default: normal (label = 0)
 
     # Inject anomalies
@@ -50,17 +61,25 @@ def generate_synthetic_data(num_samples=1000, time_steps=20, anomaly_ratio=0.1):
     anomaly_indices = np.random.choice(num_samples, num_anomalies, replace=False)
 
     for idx in anomaly_indices:
-        anomaly_type = np.random.choice(["cpu_spike", "memory_leak", "disk_failure", "network_spike", "overheating"])
-        time_idx = np.random.randint(0, time_steps)  # Random time step for anomaly injection
+        anomaly_type = np.random.choice(
+            ["cpu_spike", "memory_leak", "disk_failure", "network_spike", "overheating"]
+        )
+        time_idx = np.random.randint(
+            0, time_steps
+        )  # Random time step for anomaly injection
 
         if anomaly_type == "cpu_spike":
             data[idx, time_idx:, 0] += np.random.uniform(20, 50)  # Sudden CPU spike
         elif anomaly_type == "memory_leak":
-            data[idx, time_idx:, 1] += np.linspace(0, 30, num=time_steps - time_idx)  # Gradual memory increase
+            data[idx, time_idx:, 1] += np.linspace(
+                0, 30, num=time_steps - time_idx
+            )  # Gradual memory increase
         elif anomaly_type == "disk_failure":
             data[idx, time_idx:, 2] = np.random.uniform(80, 100)  # Sudden disk overload
         elif anomaly_type == "network_spike":
-            data[idx, time_idx:, 3] += np.random.uniform(50, 100)  # Unusual network spike
+            data[idx, time_idx:, 3] += np.random.uniform(
+                50, 100
+            )  # Unusual network spike
         elif anomaly_type == "overheating":
             data[idx, time_idx:, 4] += np.random.uniform(10, 30)  # System overheating
 
@@ -73,7 +92,9 @@ def get_data_loader(batch_size=32, num_samples=1000, anomaly_ratio=0.1):
     """
     Returns a DataLoader for training.
     """
-    data, labels = generate_synthetic_data(num_samples=num_samples, anomaly_ratio=anomaly_ratio)
+    data, labels = generate_synthetic_data(
+        num_samples=num_samples, anomaly_ratio=anomaly_ratio
+    )
     dataset = AnomalyDataset(data, labels)
     return DataLoader(dataset, batch_size=batch_size, shuffle=True)
 

@@ -24,7 +24,7 @@ class VAE(nn.Module):
             nn.ReLU(),
             nn.Linear(16, 32),
             nn.ReLU(),
-            nn.Linear(32, input_size)  # Output should match input size
+            nn.Linear(32, input_size),  # Output should match input size
         )
 
     def reparameterize(self, mu, logvar):
@@ -51,4 +51,3 @@ class VAE(nn.Module):
         recon_loss = nn.MSELoss()(recon_x, x)  # Reconstruction loss
         kl_divergence = -0.5 * torch.sum(1 + logvar - mu.pow(2) - logvar.exp())
         return recon_loss + kl_divergence
-

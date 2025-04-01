@@ -18,9 +18,19 @@ def test_model_inference():
     model = load_model()
 
     # Sample test data (mock system metrics)
-    test_data = torch.tensor([[
-        [30.5, 60.0, 80.0, 100.5, 45.3]  # Single data sample with CPU, memory, disk, network, temperature
-    ]])
+    test_data = torch.tensor(
+        [
+            [
+                [
+                    30.5,
+                    60.0,
+                    80.0,
+                    100.5,
+                    45.3,
+                ]  # Single data sample with CPU, memory, disk, network, temperature
+            ]
+        ]
+    )
 
     # Move to device (GPU or CPU)
     test_data = test_data.float().to(DEVICE)
@@ -36,4 +46,3 @@ def test_model_inference():
     # Example: Check if output is a reasonable anomaly detection score
     print(f"Prediction probability: {output.item()}")
     assert output.item() <= 1.0  # Probability cannot be greater than 1
-

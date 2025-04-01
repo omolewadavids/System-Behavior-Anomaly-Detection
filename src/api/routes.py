@@ -1,4 +1,3 @@
-
 from fastapi import APIRouter, Depends
 import numpy as np
 from src.model.inference import predict_anomaly
@@ -15,6 +14,7 @@ vae.eval()
 
 router = APIRouter()
 
+
 @router.post("/predict/")
 def predict(data: list, model=Depends(get_model)):
     prediction = predict_anomaly(model, np.array(data))
@@ -25,7 +25,15 @@ def predict(data: list, model=Depends(get_model)):
 @router.post("/detect_anomaly")
 async def detect_anomaly(data: dict):
     """API endpoint for VAE anomaly detection"""
-    input_data = np.array([data["cpu"], data["memory"], data["disk"], data["network"], data["temperature"]])
+    input_data = np.array(
+        [
+            data["cpu"],
+            data["memory"],
+            data["disk"],
+            data["network"],
+            data["temperature"],
+        ]
+    )
     input_data = input_data.reshape(1, -1)  # Reshape to match VAE input
     input_data = torch.tensor(input_data, dtype=torch.float32).to(device)
 

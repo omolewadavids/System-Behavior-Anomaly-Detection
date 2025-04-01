@@ -5,6 +5,7 @@ app = FastAPI()
 
 app.include_router(predict.router)
 
+
 @app.get("/")
 def root():
     return {"message": "System Anomaly Detection API"}

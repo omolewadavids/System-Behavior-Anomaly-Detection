@@ -17,7 +17,9 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--epochs", type=int, default=NUM_EPOCHS)
 parser.add_argument("--batch-size", type=int, default=BATCH_SIZE)
 parser.add_argument("--learning-rate", type=float, default=LEARNING_RATE)
-parser.add_argument("--s3-bucket", type=str, required=True, help="S3 bucket to save model")
+parser.add_argument(
+    "--s3-bucket", type=str, required=True, help="S3 bucket to save model"
+)
 args = parser.parse_args()
 
 # Load synthetic data
@@ -33,7 +35,13 @@ optimizer = optim.Adam(vae.parameters(), lr=args.learning_rate)
 # Start MLflow experiment
 mlflow.set_experiment("VAE_Anomaly_Detection")
 with mlflow.start_run():
-    mlflow.log_params({"epochs": args.epochs, "batch_size": args.batch_size, "learning_rate": args.learning_rate})
+    mlflow.log_params(
+        {
+            "epochs": args.epochs,
+            "batch_size": args.batch_size,
+            "learning_rate": args.learning_rate,
+        }
+    )
 
     print("🚀 Training started on AWS SageMaker...")
     for epoch in range(args.epochs):

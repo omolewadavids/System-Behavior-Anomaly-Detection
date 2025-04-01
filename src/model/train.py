@@ -29,7 +29,9 @@ criterion = nn.BCELoss()  # Binary Cross-Entropy Loss for anomaly classification
 optimizer = optim.Adam(model.parameters(), lr=LEARNING_RATE)
 
 # Load dataset
-train_loader = get_data_loader(batch_size=BATCH_SIZE, num_samples=NUM_SAMPLES, anomaly_ratio=ANOMALY_RATIO)
+train_loader = get_data_loader(
+    batch_size=BATCH_SIZE, num_samples=NUM_SAMPLES, anomaly_ratio=ANOMALY_RATIO
+)
 
 # Training loop
 logger.info("🚀 Training started...")
