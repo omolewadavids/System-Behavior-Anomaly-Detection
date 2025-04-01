@@ -1,0 +1,8 @@
+FROM pytorch/pytorch:latest
+
+RUN pip install --no-cache-dir boto3 mlflow torch numpy
+
+COPY train_vae_sagemaker.py /train_vae_sagemaker.py
+COPY src /src
+
+ENTRYPOINT ["python", "/train_vae_sagemaker.py"]

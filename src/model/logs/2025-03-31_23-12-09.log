@@ -1,0 +1,12 @@
+2025-03-31 23:12:09,860 - INFO - 🚀 Training started...
+2025-03-31 23:12:10,435 - INFO - ✅ Epoch [1/10] - Loss: 0.3049
+2025-03-31 23:12:10,769 - INFO - ✅ Epoch [2/10] - Loss: 0.1966
+2025-03-31 23:12:11,111 - INFO - ✅ Epoch [3/10] - Loss: 0.1393
+2025-03-31 23:12:11,450 - INFO - ✅ Epoch [4/10] - Loss: 0.0910
+2025-03-31 23:12:11,783 - INFO - ✅ Epoch [5/10] - Loss: 0.0947
+2025-03-31 23:12:12,117 - INFO - ✅ Epoch [6/10] - Loss: 0.0814
+2025-03-31 23:12:12,453 - INFO - ✅ Epoch [7/10] - Loss: 0.0817
+2025-03-31 23:12:12,793 - INFO - ✅ Epoch [8/10] - Loss: 0.0764
+2025-03-31 23:12:13,130 - INFO - ✅ Epoch [9/10] - Loss: 0.0554
+2025-03-31 23:12:13,472 - INFO - ✅ Epoch [10/10] - Loss: 0.0507
+2025-03-31 23:12:13,475 - INFO - 🎉 Training complete! Model saved as '/Users/medsafe/PROJECTS/system-anomaly-detection/src/model/model.pth'
