@@ -9,6 +9,40 @@ This repository contains a **System Anomaly Detection Model** using **PyTorch LS
 
 ---
 
+## **Table of Contents**
+
+1. [Requirements](#requirements)
+2. [Setup](#setup)
+3. [Generate Synthetic Data](#generate-synthetic-data)
+4. [Preprocess Data](#preprocess-data)
+5. [Model Training](#model-training)
+6. [Docker Deployment](#docker-deployment)
+7. [Terraform AWS Infrastructure](#terraform-aws-infrastructure)
+8. [CI/CD Pipeline](#cicd-pipeline)
+9. [How to Use](#how-to-use)
+10. [License](#license)
+11. [Acknowledgments](#acknowledgments)
+
+---
+
+## **Requirements**
+
+### Software Dependencies:
+- **Python 3.x**
+- **FastAPI** for building the API
+- **PyTorch** for model building and training
+- **Docker** for containerization
+- **Terraform** for AWS infrastructure management
+- **AWS CLI** for interacting with AWS services
+- **GitHub Actions** for automating deployment
+
+### Python Libraries:
+- Install required Python dependencies by running:
+
+  ```bash
+  pip install -r app/requirements.txt
+
+
 ## **Project Structure**
 
 ```plaintext
@@ -31,3 +65,4 @@ system-anomaly-detection/
 └── .github/
     └── workflows/
         └── deploy.yml            # CI/CD GitHub Actions workflow
+
