@@ -1,0 +1,5 @@
+torch
+fastapi
+uvicorn
+boto3
+mlflow
